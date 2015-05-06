@@ -9,3 +9,11 @@ fullview：false(显示description)、true(显示正文)
 
 
 图片：https://raw.githubusercontent.com/aa1000777/aa1000777.github.io/source/web-source/assets/img/文件名.jpg
+
+代码块：
+{% highlight bash %}
+{% highlight html+erb %}
+{% highlight java %}
+{% highlight yaml %}
+
+{% endhighlight %}
