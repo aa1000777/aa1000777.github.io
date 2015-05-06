@@ -1,0 +1,11 @@
+
+categories: All, Diary, Android, Tools
+
+tags：Diary, QrCode, Android, Jekyll, Github, ServerConfiguration
+
+
+
+fullview：false(显示description)、true(显示正文)
+
+
+图片：https://raw.githubusercontent.com/aa1000777/aa1000777.github.io/source/web-source/assets/img/文件名.jpg
