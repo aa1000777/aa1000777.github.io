@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title></title>
+		<description>路一直在延伸</description>
+		<link>/</link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Windows上使用Jekyll在Github上搭建个人博客（环境搭建）</title>
+				<description>&lt;p&gt;GitHub是一个代码托管网站，现在很多开源项目都放在GitHub上。 利用GitHub，可以让全球各地的程序员们一起协作开发。GitHub 提供了一种功能，叫 GitHub Pages, 利用这个功能，我 们可以为项目建立网站，当然，这也意味着我们可以通过 GitHub Pages 建立自己的网站。&lt;/p&gt;
+
+&lt;p&gt;Jekyll是一个简单的，针对博客设计的静态网站生成器。使用 GitHub 和 Jekyll，我们可以打造自己的独立博客，你可以自由地定制网站的风格，并且这 一切都是免费的。&lt;/p&gt;
+
+&lt;h2 id=&quot;windows--jekyll&quot;&gt;Windows 上安装 Jekyll&lt;/h2&gt;
+
+&lt;p&gt;共分为以下几个重要步骤&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;安装 Ruby
+安装 DevKit
+安装 Jekyll
+安装 Pygments
+    安装 Python
+    安装 ‘Easy Install’
+    安装 Pygments
+启动 Jekyll
+故障诊断
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;ruby&quot;&gt;安装 Ruby&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;前往 &lt;a href=&quot;http://rubyinstaller.org/downloads/&quot; title=&quot;http://rubyinstaller.org/downloads/&quot;&gt;http://rubyinstaller.org/downloads/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;在 “RubyInstallers” 部分，选择某个版本点击下载。
+例如，Ruby 2.0.0-p451 (x64) 是适于64位 Windows 机器上的 Ruby 2.0.0 x64 安装包。&lt;/li&gt;
+  &lt;li&gt;通过安装包安装&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最好保持默认的路径 C:\Ruby200-x64， 因为安装包明确提出 “请不要使用带有空格的文件夹 (如： Program Files)”。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;勾选 “Add Ruby executables to your PATH”，这样执行程序会被自动添加至 PATH 而避免不必要的头疼。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://cn.yizeng.me/assets/images/posts/2013-05-11-ruby-installer.png&quot; alt=&quot;enter image description here&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;打开一个命令提示行并输入以下命令来检测 Ruby 是否成功安装。&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;ruby -v&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;p&gt;输出示例：&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;ruby 2.0.0p451 (2014-02-24) [x64-mingw32]
+##安装 DevKit##
+DevKit 是一个在 Windows 上帮助简化安装及使用 Ruby C/C++ 扩展如 RDiscount 和 RedCloth 的工具箱。 详细的安装指南可以在程序的&lt;a href=&quot;https://github.com/oneclick/rubyinstaller/wiki/Development-Kit#installation-instructions&quot; title=&quot;https://github.com/oneclick/rubyinstaller/wiki/Development-Kit#installation-instructions&quot;&gt;wiki&lt;/a&gt;页面阅读。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;再次前往 &lt;a href=&quot;http://rubyinstaller.org/downloads/&quot; title=&quot;http://rubyinstaller.org/downloads/&quot;&gt;http://rubyinstaller.org/downloads/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载同系统及 Ruby 版本相对应的 DevKit 安装包。 例如，DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe 适用于64位 Windows 系统上的 Ruby 2.0.0 x64。&lt;/p&gt;
+
+    &lt;p&gt;下面列出了如何选择正确的 DevKit 版本：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  Ruby 1.8.6 to 1.9.3: DevKit tdm-32-4.5.2
+  Ruby 2.0.0: DevKit mingw64-32-4.7.2
+  Ruby 2.0.0 x64: DevKit mingw64-64-4.7.2
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行安装包并解压缩至某文件夹，如 C:\DevKit&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过初始化来创建 config.yml 文件。在命令行窗口内，输入下列命令：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  cd “C:\DevKit”
+  ruby dk.rb init
+  notepad config.yml
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在打开的记事本窗口中，于末尾添加新的一行 - C:\Ruby200-x64，保存文件并退出。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;回到命令行窗口内，审查（非必须）并安装。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ruby dk.rb review
+  ruby dk.rb install
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;安装 Jekyll&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;确保 gem 已经正确安装&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  gem -v
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;输出示例：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  2.0.14
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 Jekyll gem&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pygments&quot;&gt;安装 Pygments&lt;/h2&gt;
+&lt;p&gt;Jekyll 里默认的语法高亮插件是 &lt;a href=&quot;https://pygments.org&quot; title=&quot;https://pygments.org&quot;&gt;Pygments&lt;/a&gt;。 它需要安装 Python 并在网站的配置文件_config.yml 里将 highlighter 的值设置为pygments。&lt;/p&gt;
+
+&lt;p&gt;不久之前，Jekyll 还添加另一个高亮引擎名为 &lt;a href=&quot;https://github.com/jayferd/rouge&quot; title=&quot;https://github.com/jayferd/rouge&quot;&gt;Rouge&lt;/a&gt;， 尽管暂时不如 Pygments 支持那么多的语言，但它是原生 Ruby 程序，而不需要使用 Python。 更多信息请&lt;a href=&quot;jekyllrb.com/docs/templates/#code_snippet_highlighting&quot; title=&quot;jekyllrb.com/docs/templates/#code_snippet_highlighting&quot;&gt;点此&lt;/a&gt;关注。&lt;/p&gt;
+
+&lt;h2 id=&quot;python&quot;&gt;安装 Python&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;前往 &lt;a href=&quot;http://www.python.org/download/&quot; title=&quot;http://www.python.org/download/&quot;&gt;http://www.python.org/download/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;下载合适的 Python windows 安装包，如 Python 2.7.6 Windows Installer。 请注意，Python 2 可能会更合适，因为暂时 Python 3 可能不会正常工作。&lt;/li&gt;
+  &lt;li&gt;安装&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加安装路径 (如： C:\Python27) 至 PATH。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;检验 Python 安装是否成功&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  python –V
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;输出示例：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  Python 2.7.6
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;easy-install&quot;&gt;安装 Easy Install&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;浏览 &lt;a href=&quot;https://pypi.python.org/pypi/setuptools#installation-instructions&quot; title=&quot;https://pypi.python.org/pypi/setuptools#installation-instructions&quot;&gt;https://pypi.python.org/pypi/setuptools#installation-instructions&lt;/a&gt; 来查看详细的安装指南。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;对于 Windows 7 的机器，下载 ez_setup.py 并保存，例如，至C:\。 然后从命令行使用 Python 运行此文件：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  python “C:\ez_setup.py”
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加 ‘Python Scripts’ 路径 (如： C:\Python27\Scripts) 至 PATH&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pygments-1&quot;&gt;安装 Pygments&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;确保 easy_install 已经正确安装&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  easy_install --version
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;输出示例：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  setuptools 3.1
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 “easy_install” 来安装 Pygments&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  easy_install Pygments
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;i-classicon-pencili-gem&quot;&gt;&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt; 上面这一步可能会报错，只要更换一下gem来源就行了&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;安装gem，这个也可以去gem的官网进行下载，然后直接安装就行了，安装完成后使用gem -v查看一下是否安装成功。我安装的是2.1.11版本&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;gem是可以选择源的，默认的源有点慢，可以使用ruby.taobao.org的源，方便快捷查看当前源&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  D:\node\jekyll&amp;gt;gem sources list
+  *** CURRENT SOURCES ***
+	
+  https://rubygems.org/
+	
+  D:\node\jekyll&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;添加新源&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  gem sources -a http://ruby.taobao.org/
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;删除默认源&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  gem sources --remove https://rubygems.org/
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;再次查看的时候保证只有http://ruby.taobao.org/就行了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;如果上面出错，去网上找找教程吧，ruby环境的搭建和gem的安装教程还是蛮多的，基本google一下遍地都是。
+## 使用gem安装Jekyll ##
+使用命令 &lt;strong&gt;gem install jekyll&lt;/strong&gt; 就可以安装jekyll及所有需要的依赖，但不包括插件，安装jekyll的时候需要注意一下安装的版问题，jekyll的最新版本为1.4.3，但是有一个bug，&lt;a href=&quot;stackoverflow.com/questions/21137096/jekyll-error-running-jekyll-serve&quot; title=&quot;stackoverflow.com/questions/21137096/jekyll-error-running-jekyll-serve&quot;&gt;stackoverflow&lt;/a&gt;上有人遇到过，我自己在使用的时候也遇到了类似的问题，解决方法是安装1.4.2版本，所以这里的安装命令为： &lt;strong&gt;gem install jekyll –version “=1.4.2”&lt;/strong&gt; 。安装完成后使用 &lt;strong&gt;jekyll -v&lt;/strong&gt; 查看一下是否安装成功了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll-1&quot;&gt;启动 Jekyll&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;按照官方的 &lt;a href=&quot;http://jekyllrb.com/docs/quickstart/&quot; title=&quot;http://jekyllrb.com/docs/quickstart/&quot;&gt;Jekyll英文&lt;/a&gt;（&lt;a href=&quot;http://jekyll.bootcss.com/docs/quickstart/&quot; title=&quot;http://jekyll.bootcss.com/docs/quickstart/&quot;&gt;Jekyll中文&lt;/a&gt;）  快速开始手册 的步骤， 一个新的 Jekyll 博客可以被建立并在&lt;a href=&quot;http://localhost:4000&quot; title=&quot;http://localhost:4000&quot;&gt;localhost:4000&lt;/a&gt;浏览。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ~ $ gem install jekyll
+  ~ $ jekyll new myblog
+  ~ $ cd myblog
+  ~/myblog $ jekyll serve
+  # =&amp;gt; Now browse to http://localhost:4000
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				<pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+				<link>/all/tools/2015/05/05/windowsJekyll.html</link>
+				<guid isPermaLink="true">/all/tools/2015/05/05/windowsJekyll.html</guid>
+			</item>
+		
+			<item>
+				<title>具有格式的二维码</title>
+				<description>&lt;p&gt;这是具有格式的二维码：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aa1000777/aa1000777.github.io/source/web-source/assets/img/formatQrCode1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是扫出来的原码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	MECARD:N:Greenerprinter;TEL:5108980000;EMAIL:csr@greenerprinter.com;NOTE:The leader in sustainable printing.;ADR:2800 7th St,Berkeley,CA,94710 US;URL:www.greenerprinter.com;;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+				<pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+				<link>/all/android/2015/05/05/formatQrCode.html</link>
+				<guid isPermaLink="true">/all/android/2015/05/05/formatQrCode.html</guid>
+			</item>
+		
+			<item>
+				<title>忘川花开</title>
+				<description>&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aa1000777/aa1000777.github.io/source/web-&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+				<pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+				<link>/all/diary/2015/05/05/diary2.html</link>
+				<guid isPermaLink="true">/all/diary/2015/05/05/diary2.html</guid>
+			</item>
+		
+			<item>
+				<title>今天先开个头</title>
+				<description>&lt;p&gt;手把青秧插满田&lt;/p&gt;
+
+&lt;p&gt;低头便见水中天&lt;/p&gt;
+
+&lt;p&gt;六根清净方为道&lt;/p&gt;
+
+&lt;p&gt;退步原来是向前&lt;/p&gt;
+</description>
+				<pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+				<link>/all/diary/2015/05/05/diary1.html</link>
+				<guid isPermaLink="true">/all/diary/2015/05/05/diary1.html</guid>
+			</item>
+		
+	</channel>
+</rss>

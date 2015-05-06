@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Windows上使用Jekyll在Github上搭建个人博客（环境搭建）</title>
+	
+	<meta name="description" content="GitHub是一个代码托管网站，现在很多开源项目都放在GitHub上。 利用GitHub，可以让全球各地的程序员们一起协作开发。GitHub 提供了一种功能，叫 GitHub Pages, 利用这个功能，我 们可以为项目建立网站，当然，这也意味着我们可以通过 GitHub Pages 建立自己的网站。">
+	
+	<meta name="author" content="冰镇牛奶">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://github.com/aa1000777">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://weibo.com/u/1296888534/home">
+				<i class="fa fa-twitter"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:aa1000777@qq.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=40" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<!-- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=180" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center"  style="font-size:small">
+	手把青秧插满田 低头便见水中天</br>六根清静方为道 退步原来是向前
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="http://weibo.com/u/1296888534/home">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:aa1000777@qq.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-pinterest fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>Windows上使用Jekyll在Github上搭建个人博客（环境搭建） </h1>
+</div>
+	
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May 
+	   5th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>GitHub是一个代码托管网站，现在很多开源项目都放在GitHub上。 利用GitHub，可以让全球各地的程序员们一起协作开发。GitHub 提供了一种功能，叫 GitHub Pages, 利用这个功能，我 们可以为项目建立网站，当然，这也意味着我们可以通过 GitHub Pages 建立自己的网站。</p>
+
+<p>Jekyll是一个简单的，针对博客设计的静态网站生成器。使用 GitHub 和 Jekyll，我们可以打造自己的独立博客，你可以自由地定制网站的风格，并且这 一切都是免费的。</p>
+
+<h2 id="windows--jekyll">Windows 上安装 Jekyll</h2>
+
+<p>共分为以下几个重要步骤</p>
+
+<pre><code>安装 Ruby
+安装 DevKit
+安装 Jekyll
+安装 Pygments
+    安装 Python
+    安装 ‘Easy Install’
+    安装 Pygments
+启动 Jekyll
+故障诊断
+</code></pre>
+
+<h2 id="ruby">安装 Ruby</h2>
+
+<ol>
+  <li>前往 <a href="http://rubyinstaller.org/downloads/" title="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a></li>
+  <li>在 “RubyInstallers” 部分，选择某个版本点击下载。
+例如，Ruby 2.0.0-p451 (x64) 是适于64位 Windows 机器上的 Ruby 2.0.0 x64 安装包。</li>
+  <li>通过安装包安装</li>
+</ol>
+
+<ul>
+  <li>最好保持默认的路径 C:\Ruby200-x64， 因为安装包明确提出 “请不要使用带有空格的文件夹 (如： Program Files)”。</li>
+  <li>
+    <p>勾选 “Add Ruby executables to your PATH”，这样执行程序会被自动添加至 PATH 而避免不必要的头疼。</p>
+
+    <p><img src="http://cn.yizeng.me/assets/images/posts/2013-05-11-ruby-installer.png" alt="enter image description here" /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>打开一个命令提示行并输入以下命令来检测 Ruby 是否成功安装。</p>
+
+    <blockquote>
+      <p>ruby -v</p>
+    </blockquote>
+
+    <p>输出示例：</p>
+
+    <blockquote>
+      <p>ruby 2.0.0p451 (2014-02-24) [x64-mingw32]
+##安装 DevKit##
+DevKit 是一个在 Windows 上帮助简化安装及使用 Ruby C/C++ 扩展如 RDiscount 和 RedCloth 的工具箱。 详细的安装指南可以在程序的<a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit#installation-instructions" title="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit#installation-instructions">wiki</a>页面阅读。</p>
+    </blockquote>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>再次前往 <a href="http://rubyinstaller.org/downloads/" title="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a></p>
+  </li>
+  <li>
+    <p>下载同系统及 Ruby 版本相对应的 DevKit 安装包。 例如，DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe 适用于64位 Windows 系统上的 Ruby 2.0.0 x64。</p>
+
+    <p>下面列出了如何选择正确的 DevKit 版本：</p>
+
+    <pre><code>  Ruby 1.8.6 to 1.9.3: DevKit tdm-32-4.5.2
+  Ruby 2.0.0: DevKit mingw64-32-4.7.2
+  Ruby 2.0.0 x64: DevKit mingw64-64-4.7.2
+</code></pre>
+  </li>
+  <li>
+    <p>运行安装包并解压缩至某文件夹，如 C:\DevKit</p>
+  </li>
+  <li>
+    <p>通过初始化来创建 config.yml 文件。在命令行窗口内，输入下列命令：</p>
+
+    <pre><code>  cd “C:\DevKit”
+  ruby dk.rb init
+  notepad config.yml
+</code></pre>
+  </li>
+  <li>
+    <p>在打开的记事本窗口中，于末尾添加新的一行 - C:\Ruby200-x64，保存文件并退出。</p>
+  </li>
+  <li>
+    <p>回到命令行窗口内，审查（非必须）并安装。</p>
+
+    <pre><code>  ruby dk.rb review
+  ruby dk.rb install
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="jekyll">安装 Jekyll</h2>
+
+<ul>
+  <li>
+    <p>确保 gem 已经正确安装</p>
+
+    <pre><code>  gem -v
+</code></pre>
+
+    <p>输出示例：</p>
+
+    <pre><code>  2.0.14
+</code></pre>
+  </li>
+  <li>
+    <p>安装 Jekyll gem</p>
+
+    <pre><code>  gem install jekyll
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="pygments">安装 Pygments</h2>
+<p>Jekyll 里默认的语法高亮插件是 <a href="https://pygments.org" title="https://pygments.org">Pygments</a>。 它需要安装 Python 并在网站的配置文件_config.yml 里将 highlighter 的值设置为pygments。</p>
+
+<p>不久之前，Jekyll 还添加另一个高亮引擎名为 <a href="https://github.com/jayferd/rouge" title="https://github.com/jayferd/rouge">Rouge</a>， 尽管暂时不如 Pygments 支持那么多的语言，但它是原生 Ruby 程序，而不需要使用 Python。 更多信息请<a href="jekyllrb.com/docs/templates/#code_snippet_highlighting" title="jekyllrb.com/docs/templates/#code_snippet_highlighting">点此</a>关注。</p>
+
+<h2 id="python">安装 Python</h2>
+
+<ul>
+  <li>前往 <a href="http://www.python.org/download/" title="http://www.python.org/download/">http://www.python.org/download/</a></li>
+  <li>下载合适的 Python windows 安装包，如 Python 2.7.6 Windows Installer。 请注意，Python 2 可能会更合适，因为暂时 Python 3 可能不会正常工作。</li>
+  <li>安装</li>
+  <li>
+    <p>添加安装路径 (如： C:\Python27) 至 PATH。</p>
+  </li>
+  <li>
+    <p>检验 Python 安装是否成功</p>
+
+    <pre><code>  python –V
+</code></pre>
+
+    <p>输出示例：</p>
+
+    <pre><code>  Python 2.7.6
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="easy-install">安装 Easy Install</h2>
+
+<ul>
+  <li>
+    <p>浏览 <a href="https://pypi.python.org/pypi/setuptools#installation-instructions" title="https://pypi.python.org/pypi/setuptools#installation-instructions">https://pypi.python.org/pypi/setuptools#installation-instructions</a> 来查看详细的安装指南。</p>
+  </li>
+  <li>
+    <p>对于 Windows 7 的机器，下载 ez_setup.py 并保存，例如，至C:\。 然后从命令行使用 Python 运行此文件：</p>
+
+    <pre><code>  python “C:\ez_setup.py”
+</code></pre>
+  </li>
+  <li>
+    <p>添加 ‘Python Scripts’ 路径 (如： C:\Python27\Scripts) 至 PATH</p>
+  </li>
+</ul>
+
+<h2 id="pygments-1">安装 Pygments</h2>
+
+<ul>
+  <li>
+    <p>确保 easy_install 已经正确安装</p>
+
+    <pre><code>  easy_install --version
+</code></pre>
+
+    <p>输出示例：</p>
+
+    <pre><code>  setuptools 3.1
+</code></pre>
+  </li>
+  <li>
+    <p>使用 “easy_install” 来安装 Pygments</p>
+
+    <pre><code>  easy_install Pygments
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="i-classicon-pencili-gem"><i class="icon-pencil"></i> 上面这一步可能会报错，只要更换一下gem来源就行了</h4>
+<ul>
+  <li>安装gem，这个也可以去gem的官网进行下载，然后直接安装就行了，安装完成后使用gem -v查看一下是否安装成功。我安装的是2.1.11版本</li>
+  <li>
+    <p>gem是可以选择源的，默认的源有点慢，可以使用ruby.taobao.org的源，方便快捷查看当前源</p>
+
+    <pre><code>  D:\node\jekyll&gt;gem sources list
+  *** CURRENT SOURCES ***
+	
+  https://rubygems.org/
+	
+  D:\node\jekyll&gt;
+</code></pre>
+
+    <p>添加新源</p>
+
+    <pre><code>  gem sources -a http://ruby.taobao.org/
+</code></pre>
+
+    <p>删除默认源</p>
+
+    <pre><code>  gem sources --remove https://rubygems.org/
+</code></pre>
+  </li>
+  <li>
+    <p>再次查看的时候保证只有http://ruby.taobao.org/就行了</p>
+  </li>
+  <li>如果上面出错，去网上找找教程吧，ruby环境的搭建和gem的安装教程还是蛮多的，基本google一下遍地都是。
+## 使用gem安装Jekyll ##
+使用命令 <strong>gem install jekyll</strong> 就可以安装jekyll及所有需要的依赖，但不包括插件，安装jekyll的时候需要注意一下安装的版问题，jekyll的最新版本为1.4.3，但是有一个bug，<a href="stackoverflow.com/questions/21137096/jekyll-error-running-jekyll-serve" title="stackoverflow.com/questions/21137096/jekyll-error-running-jekyll-serve">stackoverflow</a>上有人遇到过，我自己在使用的时候也遇到了类似的问题，解决方法是安装1.4.2版本，所以这里的安装命令为： <strong>gem install jekyll –version “=1.4.2”</strong> 。安装完成后使用 <strong>jekyll -v</strong> 查看一下是否安装成功了</li>
+</ul>
+
+<h2 id="jekyll-1">启动 Jekyll</h2>
+
+<ul>
+  <li>
+    <p>按照官方的 <a href="http://jekyllrb.com/docs/quickstart/" title="http://jekyllrb.com/docs/quickstart/">Jekyll英文</a>（<a href="http://jekyll.bootcss.com/docs/quickstart/" title="http://jekyll.bootcss.com/docs/quickstart/">Jekyll中文</a>）  快速开始手册 的步骤， 一个新的 Jekyll 博客可以被建立并在<a href="http://localhost:4000" title="http://localhost:4000">localhost:4000</a>浏览。</p>
+
+    <pre><code>  ~ $ gem install jekyll
+  ~ $ jekyll new myblog
+  ~ $ cd myblog
+  ~/myblog $ jekyll serve
+  # =&gt; Now browse to http://localhost:4000
+</code></pre>
+  </li>
+</ul>
+
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			 
+				<li><a href="/categories.html#all-ref">
+					all <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories.html#tools-ref">
+					tools <span>(1)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		  
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			 
+				<li>
+					<a href="/tags.html#Jekyll-ref">
+					Jekyll <span>(1)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#Github-ref">
+					Github <span>(1)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#ServerConfiguration-ref">
+					ServerConfiguration <span>(1)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		  
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="Windows上使用Jekyll在Github上搭建个人博客（环境搭建）&via=http://weibo.com/u/1296888534/home"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=85" class="img-rounded author-image" />
+        <h4 class="section-title author-name">冰镇牛奶</h4>
+        <p class="author-bio">手把青秧插满田 低头便见水中天</br>六根清静方为道 退步原来是向前</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/all/android/2015/05/05/formatQrCode.html" title="具有格式的二维码">&larr; Previous</a></li>
+		  
+		  
+			<li class="next disabled"><a>Next &rarr;</a>
+		  
+		</ul>
+
+		<hr>
+	</div>
+	
+	<div class="col-sm-2 sidebar-2">
+	
+	</div>
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2015 冰镇牛奶 使用Jekyll. 主题来源: <a href="https://github.com/dbtek/dbyll">dbyll</a>.  当前网站源码：<a href="https://github.com/aa1000777/aa1000777.github.io">aa1000777</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
