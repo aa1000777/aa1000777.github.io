@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>完美解决 Android WebView 文本框获取焦点后自动放大问题</title>
+	
+	<meta name="description" content="前几天在写一个项目时，要求在项目中嵌入一个WebView 本来很快就完成了，测试也没有问题。但发给新加坡时，他们测试都会出现文本框聚焦时，网页面会放大（他们用三星手机测试的）">
+	
+	<meta name="author" content="冰镇牛奶">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images-->
+	<link rel="shortcut icon" href="favicon32.jpg">
+	<link rel="apple-touch-icon" href="favicon32.jpg">
+	<link rel="apple-touch-icon" sizes="72x72" href="favicon72.jpg">
+	<link rel="apple-touch-icon" sizes="114x114" href="favicon114.jpg">
+	
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://github.com/aa1000777">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://weibo.com/u/1296888534/home">
+				<i class="fa fa-twitter"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:aa1000777@qq.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=40" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<!-- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=180" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center"  style="font-size:small">
+	手把青秧插满田 低头便见水中天</br>六根清静方为道 退步原来是向前
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="http://weibo.com/u/1296888534/home">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:aa1000777@qq.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-pinterest fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/aa1000777">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>完美解决 Android WebView 文本框获取焦点后自动放大问题 </h1>
+</div>
+	
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May 
+	   6th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>网上查了好久参考他的方法加上去测试 <a href="http://www.cppblog.com/guojingjia2006/archive/2012/12/18/196429.html" title="http://www.cppblog.com/guojingjia2006/archive/2012/12/18/196429.html">http://www.cppblog.com/guojingjia2006/archive/2012/12/18/196429.html</a></p>
+
+<p>下面我将原文copy过来</p>
+
+<hr />
+
+<p>不同android 版本的webview底层实现有差异
+今天弄了下android webview下的几个页面。原先以为android 4+把 webview的viewport属性忽略掉了。
+但是今天弄了下。加了个 authorizationView.getSettings().setUseWideViewPort(true);
+viewport 的几个属性重新起作用。(测试环境，4.0+的几个版本）</p>
+
+<p>但是又遇到几个问题，就是html里有input的时候。获取焦点的时候，android会重新缩放到原来模式,看源码：</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/** </span>
+<span class="cm">          * Called in response to a message from webkit telling us that the soft </span>
+<span class="cm">          * keyboard should be launched. </span>
+<span class="cm">         */</span>  
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">displaySoftKeyboard</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">isTextView</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="n">InputMethodManager</span> <span class="n">imm</span> <span class="o">=</span> <span class="o">(</span><span class="n">InputMethodManager</span><span class="o">)</span>  
+                    <span class="n">getContext</span><span class="o">().</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">INPUT_METHOD_SERVICE</span><span class="o">);</span>  
+      
+            <span class="c1">// bring it back to the default level scale so that user can enter text  </span>
+            <span class="kt">boolean</span> <span class="n">zoom</span> <span class="o">=</span> <span class="n">mZoomManager</span><span class="o">.</span><span class="na">getScale</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">mZoomManager</span><span class="o">.</span><span class="na">getDefaultScale</span><span class="o">();</span>  
+            <span class="k">if</span> <span class="o">(</span><span class="n">zoom</span><span class="o">)</span> <span class="o">{</span>  
+                <span class="n">mZoomManager</span><span class="o">.</span><span class="na">setZoomCenter</span><span class="o">(</span><span class="n">mLastTouchX</span><span class="o">,</span> <span class="n">mLastTouchY</span><span class="o">);</span>  
+                <span class="n">mZoomManager</span><span class="o">.</span><span class="na">setZoomScale</span><span class="o">(</span><span class="n">mZoomManager</span><span class="o">.</span><span class="na">getDefaultScale</span><span class="o">(),</span> <span class="kc">false</span><span class="o">);</span>  
+            <span class="o">}</span>  
+            <span class="k">if</span> <span class="o">(</span><span class="n">isTextView</span><span class="o">)</span> <span class="o">{</span>  
+                <span class="n">rebuildWebTextView</span><span class="o">();</span>  
+                <span class="k">if</span> <span class="o">(</span><span class="n">inEditingMode</span><span class="o">())</span> <span class="o">{</span>  
+                    <span class="n">imm</span><span class="o">.</span><span class="na">showSoftInput</span><span class="o">(</span><span class="n">mWebTextView</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">mWebTextView</span><span class="o">.</span><span class="na">getResultReceiver</span><span class="o">());</span>  
+                    <span class="k">if</span> <span class="o">(</span><span class="n">zoom</span><span class="o">)</span> <span class="o">{</span>  
+                        <span class="n">didUpdateWebTextViewDimensions</span><span class="o">(</span><span class="n">INTERSECTS_SCREEN</span><span class="o">);</span>  
+                    <span class="o">}</span>  
+                    <span class="k">return</span><span class="o">;</span>  
+                <span class="o">}</span>  
+            <span class="o">}</span>  
+            <span class="c1">// Used by plugins and contentEditable.  </span>
+            <span class="c1">// Also used if the navigation cache is out of date, and  </span>
+            <span class="c1">// does not recognize that a textfield is in focus.  In that  </span>
+            <span class="c1">// case, use WebView as the targeted view.  </span>
+            <span class="c1">// see http://b/issue?id=2457459  </span>
+            <span class="n">imm</span><span class="o">.</span><span class="na">showSoftInput</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>  
+        <span class="o">}</span></code></pre></div>
+
+<p>从源码可以看到，webview当要弹起键盘的时候，会判定当前的缩放比例与默认大小（我测试了下，我自己的版本的默认值是1.5),
+当你网页viewport设置initial-scale=0.5时，当input 获取焦点的时候，android会放大到原来模式，不是我们想要的，网上查了下相关，
+有个解决方案：</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">wv</span><span class="o">.</span><span class="na">setOnFocusChangeListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnFocusChangeListener</span><span class="o">()</span> <span class="o">{</span>  
+        <span class="nd">@Override</span>  
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFocusChange</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">hasFocus</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="c1">// TODO Auto-generated method stub  </span>
+            <span class="k">try</span> <span class="o">{</span>  
+                <span class="n">Field</span> <span class="n">defaultScale</span> <span class="o">=</span> <span class="n">WebView</span><span class="o">.</span><span class="na">class</span>  
+                        <span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mDefaultScale&quot;</span><span class="o">);</span>  
+                <span class="n">defaultScale</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+                <span class="kt">float</span> <span class="n">_s</span> <span class="o">=</span> <span class="n">defaultScale</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">wv</span><span class="o">);</span>  
+                <span class="n">defaultScale</span><span class="o">.</span><span class="na">setFloat</span><span class="o">(</span><span class="n">wv</span><span class="o">,</span> <span class="n">scale</span><span class="o">);</span>  
+                <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">wv</span><span class="o">.</span><span class="na">getScale</span><span class="o">();</span>  
+                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+                <span class="k">try</span> <span class="o">{</span>  
+                    <span class="n">Field</span> <span class="n">defaultZoom</span> <span class="o">=</span> <span class="n">WebView</span><span class="o">.</span><span class="na">class</span>  
+                            <span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mZoomManager&quot;</span><span class="o">);</span>  
+                    <span class="n">defaultZoom</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+                    <span class="n">Field</span> <span class="n">defaultScale</span> <span class="o">=</span> <span class="n">defaultZoom</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span>  
+                            <span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mDefaultScale&quot;</span><span class="o">);</span>  
+                    <span class="n">defaultScale</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+                    <span class="n">defaultScale</span><span class="o">.</span><span class="na">setFloat</span><span class="o">(</span><span class="n">defaultZoom</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">wv</span><span class="o">),</span> <span class="n">scale</span><span class="o">);</span>  
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ee</span><span class="o">)</span> <span class="o">{</span>  
+                    <span class="n">ee</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+                <span class="o">}</span>  
+            <span class="o">}</span>  
+        <span class="o">}</span>  
+    <span class="o">});</span></code></pre></div>
+
+<p>但是作者碰到另外一个问题，引用自原话：</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">as it showed, I using reflect to find the field &#39;mDefaultScale&#39; to control the WebView.</span>  
+    <span class="l-Scalar-Plain">But it doesn&#39;t work on Android 4.1.1 (Google Nexus), and I catch an exception —— java.lang.NoSuchFieldException</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mDefaultScale.</span>  
+    <span class="l-Scalar-Plain">Then I list the fileds and found the framework source seems being changed(I can only reach a field called &#39;mProvider&#39;).</span>  
+      
+    <span class="l-Scalar-Plain">So how can I fix the problem (I haven&#39;t got the source yet)? Thanks for reading my question with my poor English, Thx :)</span>  
+      
+    <span class="l-Scalar-Plain">PS</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">maybe a online framework source review website is helpful but I can&#39;t found one, if you can provide me one, it will be great. :P</span></code></pre></div>
+
+<p>完了我自己测试了，发现此方案解决不了。但是引出了另外一问题，就是不用android版本下的webview实现是不一样的，其实看代码就能看出，
+原先webview有mDefaultScale字段，但是后来应该挪到mZoomManager里去了，但是我发现我手机上webview 实现和作者遇到的问题一样，只有mProvider成员，
+没有mZoomManager,所以只能寻求源码，千辛万苦，终于找到
+<a href="http://androidxref.com/4.2_r1/xref/frameworks/base/core/java/android/webkit/WebViewClassic.java" title="http://androidxref.com/4.2_r1/xref/frameworks/base/core/java/android/webkit/WebViewClassic.java">http://androidxref.com/4.2_r1/xref/frameworks/base/core/java/android/webkit/WebViewClassic.java</a>，
+mProvider 其实类型就是WebViewClassic(自己看下源码实现）,简要提下，WebProvider只是一个接口，作为WebView的一个成员，
+创建时用了factory来，完了看下几个工厂类，最后是webviewclassic实例)。
+ 对于Jerry Bean 4.2这个版本（我一个手机就是自己刷的rom)，webview的实现又换了个，所以要拿到默认缩放的成员，如下:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">try</span> <span class="o">{</span>    
+                        <span class="n">Field</span> <span class="n">defaultScale</span> <span class="o">=</span> <span class="n">WebView</span><span class="o">.</span><span class="na">class</span>    
+                                <span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mDefaultScale&quot;</span><span class="o">);</span>    
+                        <span class="n">defaultScale</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>    
+                        <span class="kt">float</span> <span class="n">sv</span> <span class="o">=</span> <span class="n">defaultScale</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">authorizationView</span><span class="o">);</span>  
+                        <span class="n">defaultScale</span><span class="o">.</span><span class="na">setFloat</span><span class="o">(</span><span class="n">authorizationView</span><span class="o">,</span> <span class="n">xxx</span><span class="o">);</span>    
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SecurityException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>    
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>    
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalAccessException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>    
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchFieldException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>    
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                        <span class="k">try</span> <span class="o">{</span>    
+                            <span class="n">Field</span> <span class="n">zoomManager</span><span class="o">;</span>     
+                            <span class="n">zoomManager</span> <span class="o">=</span> <span class="n">WebView</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mZoomManager&quot;</span><span class="o">);</span>    
+                            <span class="n">zoomManager</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>    
+                            <span class="n">Object</span> <span class="n">zoomValue</span> <span class="o">=</span> <span class="n">zoomManager</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">authorizationView</span><span class="o">);</span>    
+                            <span class="n">Field</span> <span class="n">defaultScale</span> <span class="o">=</span> <span class="n">zoomManager</span><span class="o">.</span><span class="na">getType</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mDefaultScale&quot;</span><span class="o">);</span>    
+                            <span class="n">defaultScale</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>    
+                            <span class="kt">float</span> <span class="n">sv</span> <span class="o">=</span> <span class="n">defaultScale</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">zoomValue</span><span class="o">);</span>  
+                            <span class="n">defaultScale</span><span class="o">.</span><span class="na">setFloat</span><span class="o">(</span><span class="n">zoomValue</span><span class="o">,</span> <span class="n">xxx</span><span class="o">);</span>    
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SecurityException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>    
+                            <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>    
+                            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalAccessException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>    
+                            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchFieldException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>    
+                            <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>    
+                              
+                            <span class="k">try</span> <span class="o">{</span>  
+                                <span class="n">Field</span> <span class="n">mProviderField</span> <span class="o">=</span> <span class="n">WebView</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mProvider&quot;</span><span class="o">);</span>    
+                                <span class="n">mProviderField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+                                <span class="c1">//mProviderField.getClass()  </span>
+                                <span class="n">Object</span> <span class="n">webviewclassic</span> <span class="o">=</span> <span class="n">mProviderField</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">authorizationView</span><span class="o">);</span>    
+                                  
+                                <span class="n">Field</span> <span class="n">zoomManager</span> <span class="o">=</span> <span class="n">webviewclassic</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mZoomManager&quot;</span><span class="o">);</span>     
+                                <span class="n">zoomManager</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  
+                                <span class="n">Object</span> <span class="n">zoomValue</span> <span class="o">=</span> <span class="n">zoomManager</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">webviewclassic</span><span class="o">);</span>    
+                                <span class="n">Field</span> <span class="n">defaultScale</span> <span class="o">=</span> <span class="n">zoomManager</span><span class="o">.</span><span class="na">getType</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mDefaultScale&quot;</span><span class="o">);</span>    
+                                <span class="n">defaultScale</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>    
+                                <span class="kt">float</span> <span class="n">sv</span> <span class="o">=</span> <span class="n">defaultScale</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">zoomValue</span><span class="o">);</span>  
+                                <span class="n">defaultScale</span><span class="o">.</span><span class="na">setFloat</span><span class="o">(</span><span class="n">zoomValue</span><span class="o">,</span> <span class="n">xxx</span><span class="o">);</span>    
+                            <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e2</span><span class="o">)</span>  
+                            <span class="o">{</span>  
+                                <span class="n">e2</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>  
+                            <span class="o">}</span>  
+                        <span class="o">}</span>    
+                    <span class="o">}</span></code></pre></div>
+
+<p>虽然可以拿到，并且设置成功，但是在我的手机上还是不能解决input 获取焦点后自动放大，
+完了想了下，有个实现模式可以参考:当input 获取焦点时，js调用java设置默认放缩率，设置前保存原有值，失去焦点后重新设置原来值，不然跳转到其他页面的时候，你会发现比例不对了。:)。</p>
+
+<p>因为放大后双击还是还原回原来样子。所以暂且不来纠结这个东西了。因为不同android版本的如果webview实现不一致的话，这代码就不起作用了 ：）</p>
+
+<hr />
+
+<p>按大神的方法测试只有在三星手机找不到 mZoomManager 这个类 所以方法还是行不通</p>
+
+<p>后来又找到TV端Android WebView 文本框获取焦点后自动放大的问题（代码我就只copy部分过来了）</p>
+
+<hr />
+
+<p>最后经过多次尝试最后找的解决办法就是：在webview.setWebChromeClient中重写onProgressChanged方法，加入view.requestFocus();就可以让文本框得到焦点后弹出键盘，同时页面也不会被放大；</p>
+
+<p>针对TV端的 webview中的网页设定，可以参考一下代码</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">mWebView</span><span class="o">.</span><span class="na">setWebChromeClient</span><span class="o">(</span><span class="k">new</span> <span class="nf">WebChromeClient</span><span class="o">()</span>  
+    <span class="o">{</span>  
+      
+            <span class="nd">@Override</span>  
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProgressChanged</span><span class="o">(</span><span class="n">WebView</span> <span class="n">view</span><span class="o">,</span> <span class="kt">int</span> <span class="n">newProgress</span><span class="o">)</span>  
+            <span class="o">{</span>  
+                    <span class="c1">// TODO Auto-generated method stub  </span>
+                    <span class="kd">super</span><span class="o">.</span><span class="na">onProgressChanged</span><span class="o">(</span><span class="n">view</span><span class="o">,</span> <span class="n">newProgress</span><span class="o">);</span>  
+                    <span class="n">view</span><span class="o">.</span><span class="na">requestFocus</span><span class="o">();</span>  
+      
+            <span class="o">}</span>  
+      
+     <span class="o">});</span></code></pre></div>
+
+<p>重载onProgressChanged方法之后，页面缩放的问题解决了，键盘调用也正常了。</p>
+
+<p>——————————————————————————————————————————————————————————————————————</p>
+
+<p>我加到我的代码中，发现在手机中的确有效果，但发到新加坡，得到的回复，还是同样的问题！</p>
+
+<p>到此，我表示我很伤心很伤心</p>
+
+<p>想想，只能用js去处理了</p>
+
+<p>正当我伤心写着demo时，我老大下班了，问我走不走。我就跟他讲了我的问题。他果断去开机去了，说试试他那边能不能改（我老大是写后台端的）</p>
+
+<p><code>问题解决了，只加了以下两句代码---------------蛋蛋的优伤</code></p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- 下面两句代码是做手机适配用的 ， 加上之后手机网页就会自动适配--&gt;</span>  
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width&quot;</span><span class="nt">&gt;</span>  
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span><span class="nt">&gt;</span></code></pre></div>
+
+<p>哦，不好意思忘了上demo了</p>
+
+<p>Demo：<a href="git.oschina.net/aa1000777/WebViewAdapter" title="git.oschina.net/aa1000777/WebViewAdapter">WebViewAdapter</a></p>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			 
+				<li><a href="/categories.html#all-ref">
+					all <span>(5)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories.html#android-ref">
+					android <span>(2)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		  
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			 
+				<li>
+					<a href="/tags.html#Android-ref">
+					Android <span>(2)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#QrCode-ref">
+					QrCode <span>(2)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		  
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="完美解决 Android WebView 文本框获取焦点后自动放大问题&via=http://weibo.com/u/1296888534/home"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="https://avatars0.githubusercontent.com/u/6405790?v=3&u=1a967c2e2be755ce31ecaecab6f6b49c9a89464f&s=85" class="img-rounded author-image" />
+        <h4 class="section-title author-name">冰镇牛奶</h4>
+        <p class="author-bio">手把青秧插满田 低头便见水中天</br>六根清静方为道 退步原来是向前</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/all/tools/2015/05/05/windowsJekyll.html" title="Windows上使用Jekyll在Github上搭建个人博客（环境搭建）">&larr; Previous</a></li>
+		  
+		  
+			<li class="next disabled"><a>Next &rarr;</a>
+		  
+		</ul>
+
+		<hr>
+	</div>
+	
+	<div class="col-sm-2 sidebar-2">
+	
+	</div>
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2015 冰镇牛奶 使用Jekyll. 主题来源: <a href="https://github.com/dbtek/dbyll">dbyll</a>.  当前网站源码：<a href="https://github.com/aa1000777/aa1000777.github.io">aa1000777</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
