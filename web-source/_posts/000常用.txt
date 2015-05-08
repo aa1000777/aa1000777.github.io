@@ -1,7 +1,7 @@
 
-categories: All, Diary, Android, Tools
+categories: All, Diary, Android, Tools, Html
 
-tags£ºDiary, QrCode, Android, Jekyll, Github, ServerConfiguration
+tags£ºDiary, QrCode, Android, Jekyll, Github, ServerConfiguration, Html,
 
 
 
